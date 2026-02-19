@@ -1,10 +1,12 @@
 import "./App.css";
 import { News } from "./components/news/news";
-import { Nav } from "./components/nav/nav";
+import { useContext } from "react";
+import { ThemeContext } from "./context/Themecontext";
+
 
 function App() {
   const name = "Franek";
-
+const { theme } = useContext(ThemeContext);
   const newsList = [
     {
       title: "Spotkanie z epsteinem",
@@ -39,8 +41,7 @@ function App() {
   ];
 
   return (
-    <>
-
+    <div className={theme}>
       <h1 className="animated-title">HELLO {name}!</h1>
 
       <main>
@@ -52,7 +53,7 @@ function App() {
           ></News>
         ))}
       </main>
-    </>
+    </div>
   );
 }
 
