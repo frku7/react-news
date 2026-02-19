@@ -108,7 +108,7 @@ div.light button {
 }
 div.dark ,
 div.light{
-  height: 1000px;
+  height: fit-content;
 }
 
 div.light h1.animated-title {

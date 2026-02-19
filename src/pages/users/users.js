@@ -1,8 +1,13 @@
-import './users.css'
+import { useContext } from "react";
+import "./users.css";
+import { ThemeContext } from "../../context/Themecontext";
 
 export function Users() {
-    return (
-        <h1>USERS</h1>
-    )
+  const { theme } = useContext(ThemeContext);
 
+  return (
+    <div className={theme}>
+      <h1>USERS</h1>
+    </div>
+  );
 }

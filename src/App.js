@@ -1,55 +1,41 @@
 import "./App.css";
 import { News } from "./components/news/news";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "./context/Themecontext";
 
 
 function App() {
   const name = "Franek";
-const { theme } = useContext(ThemeContext);
-  const newsList = [
-    {
-      title: "Spotkanie z epsteinem",
-      description:
-        "Odbyło się spotkanie światowych liderów w Monachium dotyczące bezpieczeństwa i współpracy międzynarodowej.",
-    },
-    {
-      title: "Nowa wyspa epsteina",
-      description:
-        "teraz jest big saint james na żydzi nie maja wstępu. 676767676767676767676767",
-    },
-    {
-      title: "Rekord na wyspie epsteina",
-      description:
-        "10000 dzieci już było na wysie  676767676767676767676767676767676767676767676767 .",
-    },
-    {
-      title: "Przełom w medycynie na wyspie epsteina",
-      description:
-        "dzieci na wyspie epsteina stworzyły lek na 676767676767676767676767676767676767676767676767.",
-    },
-    {
-      title: "Nowe technologie AI opracowane przez epsteina",
-      description:
-        "Powstał innowacyjny model sztucznej inteligencji wspierający edukację i analizę danych.",
-    },
-    {
-      title: "Zmiany klimatyczne na wyspie epsteina",
-      description:
-        "Opublikowano raport wskazujący na przyspieszone tempo topnienia lodowców.",
-    },
-  ];
+  const { theme } = useContext(ThemeContext);
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+
+    const fetchNews = async () => {
+      const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=9");
+
+      if (!response.ok) {
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setNews(data);
+    }
+
+    fetchNews();
+  }, [])
 
   return (
     <div className={theme}>
       <h1 className="animated-title">HELLO {name}!</h1>
 
       <main>
-        {newsList.map((news, index) => (
+        {news.map((news, index) => (
           <News
             key={index}
             title={news.title}
-            description={news.description}
+            description={news.body}
           ></News>
         ))}
       </main>

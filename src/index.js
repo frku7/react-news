@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Users } from "./pages/users/users";
 import { NewsDetails } from "./pages/newsDetails/newsDetails";
 import { ThemeProvider } from "./context/Themecontext";
+import { Footer } from "./components/footer/footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,8 +23,8 @@ root.render(
           <Route path="/users" element={<Users />}></Route>
           <Route path="/news/:slug" element={<NewsDetails />}></Route>
         </Routes>
+        <Footer></Footer>
       </BrowserRouter>
-      
     </ThemeProvider>
   </React.StrictMode>,
 );
